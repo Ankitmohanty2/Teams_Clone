@@ -1,6 +1,5 @@
-# Microsoft Teams Clone
+#  Teams Clone
 
-This project was built as a part of [Microsoft Engage 2021](https://microsoft.acehacker.com/engage2021/). 
 
 ## Table of Contents
 1. [About The Project](#about)
