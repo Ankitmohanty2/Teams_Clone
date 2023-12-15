@@ -25,8 +25,6 @@ A clone of the popular Microsoft Teams App that allows 2 people to connect with 
 5. Chat
 6. Display Participants in Meeting
 
-### Demo Video
-[Click here to view the demo](https://youtu.be/-7_R5Ki5jms)
 
 <a name="agile"></a>
 ### Agile
