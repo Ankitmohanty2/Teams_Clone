@@ -58,7 +58,7 @@ Agile scrum methodology is a project management system that relies on incrementa
 ```
 EMAIL=<email_here>
 PASSWORD=<email_password_here>
-SERVER_URL=https://teams-microsoft.herokuapp.com/
+SERVER_URL=https://teamsclone.onrender.com/
 ```
 3.  To start the server
     1. Development: `npm run dev`
