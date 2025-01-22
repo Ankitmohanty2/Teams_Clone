@@ -2,63 +2,223 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Steam Connect</title>
-    <link rel="stylesheet" href="/stylesheets/home.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Stream Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#1D4ED8'
+                    }
+                }
+            }
+        }
 
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        }
 
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
 </head>
-<body>
-  <!-- =============navbar================== -->
-  <nav class="navbar navbar-light bg-light">
-    <div class="container-fluid">
-      <div class="navbar-brand" href="#">
-        <img src="https://www.pngall.com/wp-content/uploads/5/Media-Video-Player-PNG-File.png" width="30" height="30" class="d-inline-block align-top" alt="">
-        Stream Connect
-      </div>
-    </div>
-  </nav>
-
-  <!-- =========container============== -->
-  <div id="home-vertically-center">
-    <div class="container">
-      <div class="row">
-
-        <div class="col-md-6 d-flex align-items-center" >
-          <div>
-
-            <p id="home-heading" class="mt-5">Meet, chat, call, and collaborate in just one place</p>
-            <p id="home-tagline" class="mt-4">Instantly start a video chat for two people with the touch of a button</p>
-            
-            <!-- =========joining options =========== -->
-            <form action="/newMeeting" method="POST" class="mt-5">
-                  <div class="input-group mb-3">
-                  <input name="username" placeholder="Enter Name" type="text" class="form-control" required>
-                  <button class="btn btn-info">New Meeting</button>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-200 min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <svg class="h-8 w-8 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                    </svg>
+                    <span class="text-xl font-bold text-gray-800 dark:text-white">Stream Connect</span>
                 </div>
-            </form>
-
-            <form action="/joinMeeting" method="POST">
-                <div class="input-group mb-3">
-                  <input name="meetingCode" placeholder="Enter Meeting Code" type="text" class="form-control" required>
-                  <input name="username" placeholder="Enter Name" type="text" class="form-control" required>
-                  <button class="btn btn-info">Join Meeting</button>      
-                </div>
-            </form>
-
-          </div>
+                
+                <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                    <svg class="h-6 w-6 text-gray-700 dark:text-gray-200 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+                    </svg>
+                    <svg class="h-6 w-6 text-gray-700 dark:text-gray-200 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+                    </svg>
+                </button>
+            </div>
         </div>
+    </nav>
 
-      <div class="col-md-6 home-image">
-        <img src="https://imgur.com/Tl1r13J.png" class="img-fluid" alt="Responsive image">
-      </div>
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Left Column -->
+            <div class="space-y-8">
+                <div class="space-y-4">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
+                        Connect & Collaborate <br>in Real-Time
+                    </h1>
+                    <p class="text-xl text-gray-600 dark:text-gray-300">
+                        Experience seamless video meetings with crystal-clear quality and intuitive controls.
+                    </p>
+                </div>
 
-      </div>
+                <!-- Forms -->
+                <div class="space-y-4">
+                    <form action="/newMeeting" method="POST" class="space-y-4">
+                        <div class="flex space-x-2">
+                            <input name="username" 
+                                   type="text" 
+                                   placeholder="Enter your name" 
+                                   class="flex-1 px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                                   required>
+                            <button class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors duration-200 flex items-center space-x-2">
+                                <i class="fas fa-video"></i>
+                                <span>New Meeting</span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <form action="/joinMeeting" method="POST">
+                        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+                            <input name="meetingCode" 
+                                   type="text" 
+                                   placeholder="Meeting code" 
+                                   class="flex-1 px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                                   required>
+                            <input name="username" 
+                                   type="text" 
+                                   placeholder="Your name" 
+                                   class="flex-1 px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                                   required>
+                            <button class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors duration-200 flex items-center space-x-2">
+                                <i class="fas fa-sign-in-alt"></i>
+                                <span>Join</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Column - Video Call Interface -->
+            <div class="relative">
+                <div class="relative z-10 bg-gray-900 rounded-2xl overflow-hidden shadow-2xl transform transition-transform hover:scale-105 p-4">
+                    <div class="flex flex-col h-[600px]">
+                        <!-- Header -->
+                        <div class="flex items-center justify-between text-white mb-4">
+                            <div class="flex items-center space-x-2">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+                                </svg>
+                                <span>Team Meeting</span>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <span class="flex items-center space-x-1">
+                                    <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                    <span class="text-sm">Live</span>
+                                </span>
+                                <span class="text-sm">1:23</span>
+                            </div>
+                        </div>
+
+                        <!-- Main Video Grid -->
+                        <div class="grid grid-cols-4 gap-4 flex-grow">
+                            <!-- Main Video -->
+                            <div class="col-span-4 row-span-2 bg-gray-800 rounded-lg relative overflow-hidden">
+                                <img src="https://images.prismic.io/getstream/ZhmJgjjCgu4jzyy__Large-Feature-Video-Calling.png?auto=format,compress" 
+                                     alt="Main participant"
+                                     class="w-full h-full object-cover">
+                                <div class="absolute bottom-4 left-4 bg-black/50 px-3 py-1 rounded-full text-white text-sm flex items-center space-x-2">
+                                    <i class="fas fa-microphone-slash text-xs"></i>
+                                    <span>Sarah Johnson (You)</span>
+                                </div>
+                            </div>
+
+                            <!-- Participant Videos -->
+                            <div class="col-span-2 bg-gray-800 rounded-lg relative overflow-hidden">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBIH9j0wfCqL4d4LGkcwHgA7ogTs3Nwpph0r69GiGSyPyTbM58vn9t7-B14eM7mRAHL-U&usqp=CAU" 
+                                     alt="Participant"
+                                     class="w-full h-full object-cover">
+                                <div class="absolute bottom-2 left-2 bg-black/50 px-2 py-1 rounded-full text-white text-xs flex items-center space-x-2">
+                                    <i class="fas fa-microphone text-xs"></i>
+                                    <span>John Doe</span>
+                                </div>
+                            </div>
+                            <div class="col-span-2 bg-gray-800 rounded-lg relative overflow-hidden">
+                                <img src="https://images.pexels.com/photos/7879683/pexels-photo-7879683.jpeg" 
+                                     alt="Participant"
+                                     class="w-full h-full object-cover">
+                                <div class="absolute bottom-2 left-2 bg-black/50 px-2 py-1 rounded-full text-white text-xs flex items-center space-x-2">
+                                    <i class="fas fa-microphone text-xs"></i>
+                                    <span>Emma Wilson</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Controls Bar -->
+                        <div class="flex justify-center space-x-4 mt-4">
+                            <button class="p-3 bg-gray-700 hover:bg-gray-600 rounded-full text-white transition-colors group relative">
+                                <i class="fas fa-microphone-slash"></i>
+                                <span class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">Unmute</span>
+                            </button>
+                            <button class="p-3 bg-gray-700 hover:bg-gray-600 rounded-full text-white transition-colors group relative">
+                                <i class="fas fa-video"></i>
+                                <span class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">Stop Video</span>
+                            </button>
+                            <button class="p-3 bg-gray-700 hover:bg-gray-600 rounded-full text-white transition-colors group relative">
+                                <i class="fas fa-desktop"></i>
+                                <span class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">Share Screen</span>
+                            </button>
+                            <button class="p-3 bg-red-500 hover:bg-red-600 rounded-full text-white transition-colors group relative">
+                                <i class="fas fa-phone-slash"></i>
+                                <span class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">End Call</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Decorative elements -->
+                <div class="absolute -top-4 -right-4 w-72 h-72 bg-blue-500/20 rounded-full filter blur-3xl"></div>
+                <div class="absolute -bottom-8 -left-8 w-72 h-72 bg-purple-500/20 rounded-full filter blur-3xl"></div>
+            </div>
+        </div>
     </div>
-  </div>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-      <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-    </body>
+
+    <!-- Features Section -->
+    <div class="bg-white/50 dark:bg-gray-800/50 backdrop-blur-md py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-6 rounded-xl bg-white/50 dark:bg-gray-700/50 backdrop-blur-md space-y-4 hover:transform hover:scale-105 transition-all duration-300">
+                    <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-video text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">HD Video Calls</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Crystal clear video quality for seamless communication.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="p-6 rounded-xl bg-white/50 dark:bg-gray-700/50 backdrop-blur-md space-y-4 hover:transform hover:scale-105 transition-all duration-300">
+                    <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-lock text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Secure Meetings</h3>
+                    <p class="text-gray-600 dark:text-gray-300">End-to-end encryption for your privacy.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="p-6 rounded-xl bg-white/50 dark:bg-gray-700/50 backdrop-blur-md space-y-4 hover:transform hover:scale-105 transition-all duration-300">
+                    <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-users text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Group Meetings</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Connect with multiple participants seamlessly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
