@@ -1,16 +1,38 @@
 const {v4: uuidv4} = require('uuid');
 const nodemailer = require("nodemailer");
+const User = require("../models/User");
 require("dotenv").config();
 
-exports.home = (req,res) => {
-    res.render("home");
+exports.home = async (req,res) => {
+    let userData = null;
+    if (req.session && req.session.user) {
+        try {
+            userData = await User.findById(req.session.user.id).lean();
+        } catch(e) { console.error(e) }
+    }
+    res.render("home", { user: userData || (req.session ? req.session.user : null) });
 }
 
-exports.newMeeting = (req,res) => {
-    res.redirect(`/meet?meetingCode=${uuidv4()}&username=${req.body.username}`);
+exports.newMeeting = async (req,res) => {
+    const meetingCode = uuidv4();
+    if (req.session && req.session.user) {
+        try {
+            await User.findByIdAndUpdate(req.session.user.id, {
+                $push: { meetingHistory: { meetingCode, role: 'Host' } }
+            });
+        } catch(e) { console.error(e) }
+    }
+    res.redirect(`/meet?meetingCode=${meetingCode}&username=${req.body.username}`);
 }
 
-exports.joinMeeting = (req,res) => {
+exports.joinMeeting = async (req,res) => {
+    if (req.session && req.session.user) {
+        try {
+            await User.findByIdAndUpdate(req.session.user.id, {
+                $push: { meetingHistory: { meetingCode: req.body.meetingCode, role: 'Participant' } }
+            });
+        } catch(e) { console.error(e) }
+    }
     res.redirect(`/meet?meetingCode=${req.body.meetingCode}&username=${req.body.username}`);
 }
 

@@ -66,11 +66,19 @@ let chatInput = $("#message-input");
 
 $('html').keydown((event) => {
   //when enter key is pressed & input is not empty
-    if(event.which==13 && chatInput.val().length!=0){
+    if(event.which==13 && chatInput.val().trim().length!=0){
         socket.emit('chat',chatInput.val());
         chatInput.val(''); //clearing the input
     }
 })
+
+$('.chat-send-btn').click(() => {
+    if(chatInput.val().trim().length!=0){
+        socket.emit('chat',chatInput.val());
+        chatInput.val('');
+    }
+});
+
 
 socket.on("sendChatMessage",(chatMessage,username,time) => {
   //add message to the list
@@ -85,39 +93,33 @@ socket.on("sendChatMessage",(chatMessage,username,time) => {
 
 const audioControl = () => {
     const enabled = userVideoStream.getAudioTracks()[0].enabled;
-
-    var button;
+    const btn = $('#meeting-mute');
 
     if (enabled) {
-      button = `  <button type="button" class="btn btn-secondary">Unmute  <i class="fas fa-microphone-slash" ></i></button>`;
+      btn.removeClass('active').addClass('off');
+      btn.html('<i class="fas fa-microphone-slash"></i>');
       userVideoStream.getAudioTracks()[0].enabled = false; //disable audio
-      
     } else {
-      button = `<button type="button" class="btn btn-secondary">Mute  <i class="fas fa-microphone" ></i></button>`;
+      btn.removeClass('off').addClass('active');
+      btn.html('<i class="fas fa-microphone"></i>');
       userVideoStream.getAudioTracks()[0].enabled = true; //enable audio
     }
-
-    $('#meeting-mute')[0].innerHTML = button;
-
 }
 
-  const videoControl = () => {
-    console.log('object')
+const videoControl = () => {
     let enabled = userVideoStream.getVideoTracks()[0].enabled;
-
-    var button;
+    const btn = $('#meeting-video-control');
 
     if (enabled) {
       userVideoStream.getVideoTracks()[0].enabled = false;
-      button = ` <button type="button" class="btn btn-secondary">Start Video <i class="fas fa-video-slash"></i></button>`;
+      btn.removeClass('active').addClass('off');
+      btn.html('<i class="fas fa-video-slash"></i>');
     } else {
-      button = `<button type="button" class="btn btn-secondary">Stop Video <i class="fas fa-video"></i></button>`;
       userVideoStream.getVideoTracks()[0].enabled = true;
+      btn.removeClass('off').addClass('active');
+      btn.html('<i class="fas fa-video"></i>');
     }
-
-    $('#meeting-video-control')[0].innerHTML = button;
-
-  }  
+}
 
   // ==============leave meeting ========================
 

@@ -1,0 +1,41 @@
+node_modules/
+package-lock.json
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime files
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage and reports
+coverage/
+.nyc_output/
+
+# Build output
+dist/
+build/
+
+# Caches
+.cache/
+.eslintcache
+.parcel-cache/
+.turbo/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
