@@ -23,7 +23,7 @@
                 <a href="#features">Features</a>
                 <a href="#stats">Pricing</a>
                 <a href="#testimonials">Resources</a>
-                <a href="#download">Download</a>
+                <a href="https://github.com/Ankitmohanty2/Teams_Clone" target="_blank" style="display: flex; align-items: center; gap: 6px; color: var(--color-text); font-weight: 600;"><i class="fab fa-github"></i> Give me a star</a>
             </div>
 
             <div class="nav-actions">
@@ -126,8 +126,7 @@
     <section class="hero" id="hero">
         <div class="container">
             <div class="hero-badge">
-                <span class="hero-badge-dot"></span>
-                New: AI-powered noise cancellation is here
+                New: Crystal clear audio for all your meetings
             </div>
 
             <h1 class="hero-title">
@@ -677,6 +676,9 @@
 
             <div class="footer-bottom">
                 <p class="footer-copyright">© Copyright 2024 Stream Connect. All rights reserved.</p>
+                <p style="font-size: 0.9rem; color: var(--color-text-secondary); text-align: center;">
+                    Crafted with <i class="fas fa-heart" style="color: #ef4444; margin: 0 2px;"></i> by <a href="https://github.com/Ankitmohanty2" target="_blank" style="color: var(--color-text-secondary); font-weight: 600; text-decoration: underline; text-underline-offset: 2px;">Ankit</a>
+                </p>
                 <div class="footer-bottom-links">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
@@ -1075,6 +1077,12 @@
                 console.error("Logout failed");
             }
         }
+        
+        // Scroll to top on page load/reload
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
     </script>
 </body>
 </html>
