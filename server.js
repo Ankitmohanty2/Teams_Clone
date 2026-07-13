@@ -13,7 +13,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo').default || require('connect-mongo');
 
 // Database Connection
-mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost:27017/stream_connect').then(() => {
+mongoose.connect(process.env.MONGO_URI || process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/stream_connect').then(() => {
     console.log("Connected to MongoDB successfully");
 }).catch((err) => {
     console.log("MongoDB connection error: ", err);
@@ -27,7 +27,7 @@ app.use(session({
     secret: process.env.SESSION_SECRET || 'streamconnect_super_secret_key',
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL || 'mongodb://localhost:27017/stream_connect' }),
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI || process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/stream_connect' }),
     cookie: { maxAge: 1000 * 60 * 60 * 24 } // 1 day
 }));
 
